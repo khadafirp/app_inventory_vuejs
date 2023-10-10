@@ -9,6 +9,9 @@
       ...mapActions(['masukFeature']),
       daftar(){
         this.$router.push({ path: '/daftar' })
+      },
+      masukAct(){
+        this.$store.dispatch('masukFeature/masuk')
       }
     }
   }
@@ -30,7 +33,7 @@
       <input type="password" v-model="masukFeature.password"/>
     </div>
     <div>
-      <button @click="$store.dispatch('masukFeature/masuk')">masuk</button>
+      <button @click="masukAct">masuk</button>
     </div>
     <div>
       Belum punya akun ? 
