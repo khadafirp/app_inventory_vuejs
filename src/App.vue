@@ -10,7 +10,10 @@ import { mapState, mapActions } from 'vuex'
       ...mapActions(['berandaFeature']),
     },
     mounted(){
-      this.$store.dispatch('berandaFeature/getData')
+      setTimeout(() => {
+        this.$store.dispatch('berandaFeature/getData')
+      }, 200)
+
       console.log("local = " + localStorage.getItem('id_pengguna'))
     }
   }
