@@ -18,11 +18,18 @@ export default {
                     state.nama_lengkap = response.data.data.nama_lengkap
                 }
             })
+        },
+        keluar(state){
+            localStorage.clear()
+            state.id_pengguna = ''
         }
     },
     actions: {
         getData({commit}){
             commit('getData')
+        },
+        keluar({commit}){
+            commit('keluar')
         }
     }
 }

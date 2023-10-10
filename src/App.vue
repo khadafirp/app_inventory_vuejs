@@ -8,13 +8,19 @@ import { mapState, mapActions } from 'vuex'
     },
     methods: {
       ...mapActions(['berandaFeature']),
+      keluar(){
+        this.$store.dispatch('berandaFeature/keluar')
+        this.$router.push('/')
+        setTimeout(() => {
+          window.location.reload()
+        }, 1000)
+      },
+      refreshPage(){
+        this.$store.dispatch('berandaFeature/getData')
+      }
     },
     mounted(){
-      setTimeout(() => {
-        this.$store.dispatch('berandaFeature/getData')
-      }, 200)
-
-      console.log("local = " + localStorage.getItem('id_pengguna'))
+      this.refreshPage()
     }
   }
 </script>
@@ -27,9 +33,14 @@ import { mapState, mapActions } from 'vuex'
       <div class="greetings">
         <h1 class="green">Selamat Datang {{ berandaFeature.id_pengguna === null ? '' : berandaFeature.nama_lengkap }}</h1>
       </div>
+      <div v-if="berandaFeature.id_pengguna != null">
+        <button @click="keluar">Logout</button>
+      </div>
 
       <nav>
         <RouterLink to="/">Beranda</RouterLink>
+        <a v-if="berandaFeature.id_pengguna != null"><RouterLink to="/gudang">Gudang</RouterLink></a>
+        <a v-if="berandaFeature.id_pengguna != null"><RouterLink to="/laporan">Laporan</RouterLink></a>
         <RouterLink :to="berandaFeature.id_pengguna === null ? '/masuk' : '/profil'">
           {{
             berandaFeature.id_pengguna === null ?
