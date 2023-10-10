@@ -28,7 +28,7 @@ export default {
             ){
                 axios.post(state.endpoint + 'daftar', param).then((response) => {
                     console.log(response.data)
-                    if(response.data.status === 201){
+                    if(response.data != null){
                         router.back()
                     }
                 })
